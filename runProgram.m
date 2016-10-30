@@ -1,5 +1,5 @@
 function[YFinal, conMat, time] = runProgram()
-T = readtable('HW4.txt');
+T = readtable('dataset.txt');
 %X = table2array(T(:,2:8));  %taking features
 %Y = table2array(T(:,1));       %taking classes
 D = table2array(T);
@@ -26,12 +26,12 @@ sizeTrain = size(TrainD,1);
 
 [mu1, mu2, cov1, cov2, p1, p2] = params(Dclass1, Dclass2, sizeTrain);
 
-YPredTest = testing(testD(:,2:7), mu1,mu2,cov1,cov2,p1, p2 );
+YPredTest = testing(testD(:,2:8), mu1,mu2,cov1,cov2,p1, p2 );
 YActualTest = testD(:,1);
 %conMat = confuMat(YPredTest, YActualTest);  %considering class 1 as POSITIVE
 conMat = confusionmat(YActualTest, YPredTest);
 %DecBound = decBound(mu1,mu2,cov1,cov2,p1, p2);
-[YFinal, time] = finalModel(D(:,2:7), mu1,mu2,cov1,cov2,p1, p2);
+[YFinal, time] = finalModel(D(:,2:8), mu1,mu2,cov1,cov2,p1, p2);
 
 
 
